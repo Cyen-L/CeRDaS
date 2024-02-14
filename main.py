@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import joblib
+from typing import List
 
 # Load trained model
 model = joblib.load('iris_model.pkl')
@@ -17,5 +18,5 @@ class IrisFeatures(BaseModel):
 async def predict_species(iris: IrisFeatures):
     features = [[iris.sepal_length, iris.sepal_width, iris.petal_length, iris.petal_width]]
     prediction = model.predict(features)
-    print(prediction[0])
-    return {"predicted_species": int(prediction[0])}
+    print(prediction)
+    return {"predicted_species": prediction[0]}
