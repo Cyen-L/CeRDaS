@@ -10,7 +10,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 
 # Load trained model
-model = joblib.load('iris_model.pkl')
+#model = joblib.load('iris_model.pkl')
 
 app = FastAPI()
 
@@ -50,6 +50,7 @@ async def startup_event():
     X, y = ds.data, ds.target
     y = [ds.target_names[val] for val in y]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    print('App Successfully Start-Up...')
     
 
 @app.post("/predict_single/")

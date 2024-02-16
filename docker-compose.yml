@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  iris-postgress:
+    image: postgres:latest
+    container_name: iris-db-ctn
+    volumes:
+      - ./PostgreSQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: iris-db
+      POSTGRES_USER: cy
+      POSTGRES_PASSWORD: cy
+    ports:
+      - "5432:5432"
+  iris-app:
+    image: iris-app-img:latest
+    container_name: iris-app-ctn
+    build: ./App
+    command: uvicorn main:app --host=0.0.0.0 --port=8000 --reload
+    volumes:
+      - ./App:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - iris-postgress
+    environment:
+      DATABASE_URL: postgresql://cy:cy@iris-postgress/iris-db
+
+networks:
+  default:
+    driver: bridge
