@@ -1,6 +1,7 @@
 CREATE TABLE Model (
     Id SERIAL PRIMARY KEY,
     Model_Algo VARCHAR(255) NOT NULL,
+    Model_Parameters JSONB NOT NULL,
     Saved_Name VARCHAR(255) NOT NULL,
     Model_Version INTEGER NOT NULL,
     Balance_Accuracy DOUBLE PRECISION NOT NULL, 

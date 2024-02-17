@@ -12,8 +12,6 @@
 
 >>> sudo docker run -d --name iris-db-ctn -p 5432:5432 iris-db:latest
 
->>> sudo docker exec -it <container_name> psql -U mycustomuser -d mycustomdb
-
 >>> sudo docker-compose up -d
 * Start multiple containers as defined in a docker-compose.yml file in current directory
 * Including PostgreSQL database
@@ -38,3 +36,5 @@ psql -U myuser -d mydatabase: This invokes the PostgreSQL command-line interface
 * Lists all the tables in the currently connected database
 
 >>> \d mytable
+
+>>> SELECT Id, Model_Algo, Model_Parameters, Saved_Name, Model_Version, Balance_Accuracy, Generated_Time FROM Model;
