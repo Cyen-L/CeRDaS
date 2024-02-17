@@ -21,6 +21,9 @@
 * '-it', flags allocate an interactive terminal.
 psql -U myuser -d mydatabase: This invokes the PostgreSQL command-line interface (psql) as the user myuser to connect to the database mydatabase.
 
+>>> sudo docker save -o iris-app-img.tar iris-app-img:latest
+>>> sudo docker save -o postgres.tar postgres:latest
+
 >>> sudo docker ps -a
 
 >>> sudo docker images

@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     container_name: iris-db-ctn
     volumes:
-      - ./PostgreSQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       POSTGRES_DB: iris-db
       POSTGRES_USER: cy
