@@ -13,6 +13,10 @@ class IrisFeaturesList(BaseModel):
     model_version: int
     iris_features: List[IrisFeatures]
 
+class ViewQuery(BaseModel):
+    model_algo: str = 'All',
+    saved_name: str = 'All'
+
 class BaseTrainRequest(BaseModel):
     saved_name: str = None
 

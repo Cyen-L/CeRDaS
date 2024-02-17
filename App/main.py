@@ -28,6 +28,30 @@ async def startup_event():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     print('App Successfully Start-Up...')
 
+@app.post("/view_all_model")
+async def view_model(input_data: ViewQuery):
+
+    # Initialize SQL Query
+    query = "SELECT Id, Model_Algo, Saved_Name, Model_Version, Balance_Accuracy, Generated_Time, Model_Parameters FROM Model WHERE"
+    query_tuple = ()
+
+    # Modify query based on the input
+    if (input_data.model_algo != 'All'):
+        query += " Model_Algo = %s"
+        query_tuple += (input_data.model_algo, )
+    else:
+        query += " Model_Algo != 'All'"
+
+    if input_data.saved_name != 'All':
+        query += " AND Saved_Name = %s"
+        query_tuple += (input_data.saved_name, )
+    else:
+        query += " AND Saved_Name != 'All'"
+    
+    # Executre the SQL Query
+    result = SQL_Query(query, query_tuple)
+    return result.to_dict(orient='index')
+
 @app.post("/predict/")
 async def predict_species(iris_data: IrisFeaturesList):
     

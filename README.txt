@@ -38,3 +38,5 @@ psql -U myuser -d mydatabase: This invokes the PostgreSQL command-line interface
 >>> \d mytable
 
 >>> SELECT Id, Model_Algo, Model_Parameters, Saved_Name, Model_Version, Balance_Accuracy, Generated_Time FROM Model;
+
+>>> SELECT Id, Model_Id, Generated_Time, Output_Data FROM Prediction;
